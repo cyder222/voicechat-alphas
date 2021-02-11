@@ -1,0 +1,15 @@
+title: category
+type: object
+properties:
+  id:
+    type: number
+  name:
+    type: string
+  parent_category_id:
+    type: number
+description: roomのカテゴリを表す
+x-examples:
+  example-1:
+    id: 0
+    name: string
+    parent_category_id: 0

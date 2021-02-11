@@ -1,0 +1,11 @@
+title: room_message
+type: object
+properties:
+  id:
+    type: number
+  room_id:
+    type: number
+  message:
+    type: string
+  user_id:
+    type: string

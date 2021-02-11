@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: voiceconverter_chat_api
+  version: '1.0'
+  description: 声質変換のチャットAPIです
+  contact:
+    name: taiki
+    email: boruboredo@gmail.com
+  license:
+    name: MIT
+servers:
+  - url: 'http://myapp.test.com'
+    description: test_server
+paths:
+  /rooms:
+    get:
+      summary: get_rooms
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/room.v1.yaml
+      operationId: get-rooms
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: category_id
+          description: カテゴリID
+        - schema:
+            type: number
+          in: query
+          name: offset
+          description: オフセット
+        - schema:
+            type: number
+          in: query
+          name: limit
+          description: ページあたりの件数
+      description: ルームの一覧を得る
+    post:
+      summary: create_new_room
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-rooms
+      description: ルームを作成する
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/roomCreateOrUpdateBody'
+            examples: {}
+        description: ルームの基本情報
+    parameters: []
+  '/rooms/{room_id}':
+    parameters:
+      - schema:
+          type: string
+        name: room_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/room.v1.yaml
+      operationId: get-rooms-room_id
+      description: 'get room by room_id'
+    delete:
+      summary: 'delete roooms'
+      operationId: delete-rooms-room_id
+      description: 'delete room by id'
+      responses:
+        '200':
+          description: OK
+    patch:
+      summary: ''
+      operationId: patch-rooms-room_id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/roomCreateOrUpdateBody'
+  /categories:
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/category.v1.yaml
+      operationId: get-categories
+      description: カテゴリの一覧を返す
+components:
+  schemas:
+    roomCreateOrUpdateBody:
+      title: roomCreateOrUpdateBody
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        max_user_num:
+          type: number
+        main_language:
+          type: string
+        category_id:
+          type: number
+      description: roomを作成、更新する時に必要なパラメータです

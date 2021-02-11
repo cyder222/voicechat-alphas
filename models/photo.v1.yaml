@@ -1,0 +1,12 @@
+title: photo
+type: object
+description: ''
+properties:
+  id:
+    type: string
+  thumb_url:
+    type: string
+  main_url:
+    type: string
+  '':
+    type: string

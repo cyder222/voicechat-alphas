@@ -9,7 +9,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'http://myapp.test.com'
+  - url: 'http://myapp.test.com/api'
     description: test_server
 paths:
   /rooms:
@@ -76,11 +76,11 @@ paths:
               schema:
                 $ref: ../models/room.v1.yaml
       operationId: get-rooms-room_id
-      description: 'get room by room_id'
+      description: get room by room_id
     delete:
-      summary: 'delete roooms'
+      summary: delete roooms
       operationId: delete-rooms-room_id
-      description: 'delete room by id'
+      description: delete room by id
       responses:
         '200':
           description: OK

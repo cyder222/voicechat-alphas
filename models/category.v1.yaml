@@ -5,6 +5,10 @@ x-examples:
   example-1:
     id: 0
     name: string
+<<<<<<< HEAD
+=======
+    parent_category_id: 0
+>>>>>>> 27ba14b68f30e078707a1e4341c5f7afd636dd07
 properties:
   id:
     type: number

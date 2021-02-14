@@ -9,10 +9,10 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'http://myapp.test.com/api'
+  - url: 'http://myapp.test.com'
     description: test_server
 paths:
-  /rooms:
+  /api/rooms:
     get:
       summary: get_rooms
       tags: []
@@ -59,7 +59,7 @@ paths:
             examples: {}
         description: ルームの基本情報
     parameters: []
-  '/rooms/{room_id}':
+  '/api/rooms/{room_id}':
     parameters:
       - schema:
           type: string
@@ -95,7 +95,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/roomCreateOrUpdateBody'
-  /categories:
+  /api/categories:
     get:
       summary: Your GET endpoint
       responses:
@@ -109,6 +109,7 @@ paths:
                   $ref: '#/components/schemas/category'
       operationId: get-categories
       description: カテゴリの一覧を返す
+    parameters: []
 components:
   schemas:
     roomCreateOrUpdateBody:

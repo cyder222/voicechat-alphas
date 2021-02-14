@@ -24,7 +24,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ../models/room.v1.yaml
+                  $ref: '#/components/schemas/room'
       operationId: get-rooms
       parameters:
         - schema:
@@ -74,7 +74,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/room.v1.yaml
+                $ref: '#/components/schemas/room'
       operationId: get-rooms-room_id
       description: get room by room_id
     delete:
@@ -106,7 +106,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ../models/category.v1.yaml
+                  $ref: '#/components/schemas/category'
       operationId: get-categories
       description: カテゴリの一覧を返す
 components:
@@ -126,3 +126,43 @@ components:
         category_id:
           type: number
       description: roomを作成、更新する時に必要なパラメータです
+    category:
+      title: category
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    room:
+      title: room
+      type: object
+      description: 部屋を表すモデル
+      x-examples:
+        example-1:
+          id: 0
+          title: string
+          description: string
+          max_people: 0
+          main_langage: string
+          created_at: string
+          updated_at: string
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        description:
+          type: string
+        main_langage:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        category:
+          $ref: ./category.v1.yaml
+        current_user_num:
+          type: integer
+        max_user_num:
+          type: integer

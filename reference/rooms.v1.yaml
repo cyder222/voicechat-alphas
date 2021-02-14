@@ -135,6 +135,9 @@ components:
           type: number
         name:
           type: string
+      required:
+        - id
+        - name
     room:
       title: room
       type: object
@@ -167,3 +170,6 @@ components:
           type: integer
         max_user_num:
           type: integer
+      required:
+        - id
+        - title

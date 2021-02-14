@@ -161,7 +161,7 @@ components:
         updated_at:
           type: string
         category:
-          $ref: ./category.v1.yaml
+          $ref: '#/components/schemas/category'
         current_user_num:
           type: integer
         max_user_num:

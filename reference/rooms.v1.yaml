@@ -170,6 +170,48 @@ components:
           type: integer
         max_user_num:
           type: integer
+        room_identity:
+          type: string
       required:
         - id
         - title
+        - room_identity
+    user:
+      title: users
+      type: object
+      properties:
+        id:
+          type: string
+        nickname:
+          type: string
+        '':
+          type: string
+    room_user:
+      title: room_user
+      type: object
+      description: ルームに入っているユーザー一覧を表す
+      x-examples:
+        example-1: {}
+      properties:
+        id:
+          type: string
+        room:
+          $ref: '#/components/schemas/room'
+        user:
+          $ref: '#/components/schemas/user'
+      required:
+        - room
+        - user
+  securitySchemes:
+    localserver_oauth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://myapp.test.com/api/auth/google_oauth2'
+          refreshUrl: ''
+          scopes:
+            read: ''
+            write: ''
+security:
+  - authorizationUrl:
+      - scope_1

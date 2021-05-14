@@ -29,5 +29,3 @@ properties:
     type: integer
   max_user_num:
     type: integer
-  '':
-    type: string

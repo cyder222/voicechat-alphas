@@ -59,6 +59,12 @@ paths:
             examples: {}
         description: ルームの基本情報
     parameters: []
+    patch:
+      summary: ''
+      operationId: patch-api-rooms
+      responses:
+        '200':
+          description: OK
   '/api/rooms/{room_id}':
     parameters:
       - schema:
@@ -153,9 +159,9 @@ paths:
         roomのadmin_userまたは、本人以外では削除できない。
       parameters:
         - schema:
-            type: number
+            type: string
           in: query
-          name: user_id
+          name: id
           description: 削除するユーザーID
 components:
   schemas:

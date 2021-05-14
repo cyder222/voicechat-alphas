@@ -59,6 +59,12 @@ paths:
             examples: {}
         description: ルームの基本情報
     parameters: []
+    patch:
+      summary: ''
+      operationId: patch-api-rooms
+      responses:
+        '200':
+          description: OK
   '/api/rooms/{room_id}':
     parameters:
       - schema:
@@ -110,6 +116,53 @@ paths:
       operationId: get-categories
       description: カテゴリの一覧を返す
     parameters: []
+  '/api/rooms/{room_id}/users':
+    parameters:
+      - schema:
+          type: string
+        name: room_id
+        in: path
+        required: true
+    get:
+      summary: ルームのユーザー一覧を返却する
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/user.v1.yaml
+      operationId: get-api-rooms-room_id-users
+      description: ルームのユーザー一覧を返却する
+      parameters: []
+      x-internal: false
+    post:
+      summary: ルームにユーザーを追加する
+      operationId: post-api-rooms-room_id-users
+      responses:
+        '200':
+          description: OK
+      description: ルームにユーザーを追加する
+    delete:
+      summary: ''
+      operationId: delete-api-rooms-room_id-users
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Forbidden
+      description: |-
+        ルームからユーザーを消す。
+        roomのadmin_userまたは、本人以外では削除できない。
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: 削除するユーザーID
 components:
   schemas:
     roomCreateOrUpdateBody:

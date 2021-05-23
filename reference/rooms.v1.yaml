@@ -269,6 +269,6 @@ components:
         - user
   securitySchemes:
     ApiKey:
-      name: API Key
+      name: apiKey
       type: apiKey
       in: query

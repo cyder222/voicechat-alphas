@@ -58,6 +58,9 @@ paths:
               $ref: '#/components/schemas/roomCreateOrUpdateBody'
             examples: {}
         description: ルームの基本情報
+      parameters: []
+      security:
+        - API Key - 1: []
     parameters: []
   '/api/rooms/{room_id}':
     parameters:
@@ -84,6 +87,8 @@ paths:
       responses:
         '200':
           description: OK
+      security:
+        - API Key - 1: []
     patch:
       summary: ''
       operationId: patch-rooms-room_id
@@ -95,6 +100,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/roomCreateOrUpdateBody'
+      security:
+        - API Key - 1: []
   /api/categories:
     get:
       summary: Your GET endpoint
@@ -110,6 +117,37 @@ paths:
       operationId: get-categories
       description: カテゴリの一覧を返す
     parameters: []
+  '/api/rooms/{room_id}/users':
+    parameters:
+      - schema:
+          type: string
+        name: room_id
+        in: path
+        required: true
+    get:
+      summary: 部屋のユーザー一覧を返却する
+      tags: []
+      responses: {}
+      operationId: get-api-rooms-room_id-users
+      description: 部屋のユーザー一覧を返却する
+    post:
+      summary: 部屋にユーザーを入室させる
+      operationId: post-api-rooms-room_id-users
+      responses:
+        '200':
+          description: OK
+      description: ''
+      security:
+        - API Key - 1: []
+    delete:
+      summary: ユーザーを部屋から退出させる
+      operationId: delete-api-rooms-room_id-users
+      responses:
+        '200':
+          description: OK
+      description: ''
+      security:
+        - API Key - 1: []
 components:
   schemas:
     roomCreateOrUpdateBody:
@@ -203,15 +241,10 @@ components:
         - room
         - user
   securitySchemes:
-    localserver_oauth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://myapp.test.com/api/auth/google_oauth2'
-          refreshUrl: ''
-          scopes:
-            read: ''
-            write: ''
+    API Key - 1:
+      name: API Key
+      type: apiKey
+      in: header
 security:
   - authorizationUrl:
       - scope_1

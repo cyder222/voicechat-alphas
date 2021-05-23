@@ -58,6 +58,8 @@ paths:
               $ref: '#/components/schemas/roomCreateOrUpdateBody'
             examples: {}
         description: ルームの基本情報
+      security:
+        - ApiKey: []
     parameters: []
     patch:
       summary: ''
@@ -65,6 +67,8 @@ paths:
       responses:
         '200':
           description: OK
+      security:
+        - ApiKey: []
   '/api/rooms/{room_id}':
     parameters:
       - schema:
@@ -90,6 +94,8 @@ paths:
       responses:
         '200':
           description: OK
+      security:
+        - ApiKey: []
     patch:
       summary: ''
       operationId: patch-rooms-room_id
@@ -101,6 +107,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/roomCreateOrUpdateBody'
+      security:
+        - ApiKey: []
   /api/categories:
     get:
       summary: Your GET endpoint
@@ -146,6 +154,8 @@ paths:
         '200':
           description: OK
       description: ルームにユーザーを追加する
+      security:
+        - ApiKey: []
     delete:
       summary: ''
       operationId: delete-api-rooms-room_id-users
@@ -163,6 +173,8 @@ paths:
           in: query
           name: id
           description: 削除するユーザーID
+      security:
+        - ApiKey: []
 components:
   schemas:
     roomCreateOrUpdateBody:
@@ -256,15 +268,7 @@ components:
         - room
         - user
   securitySchemes:
-    localserver_oauth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://myapp.test.com/api/auth/google_oauth2'
-          refreshUrl: ''
-          scopes:
-            read: ''
-            write: ''
-security:
-  - authorizationUrl:
-      - scope_1
+    ApiKey:
+      name: API Key
+      type: apiKey
+      in: query

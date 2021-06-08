@@ -43,6 +43,7 @@ paths:
           name: limit
           description: ページあたりの件数
       description: ルームの一覧を得る
+      security: []
     post:
       summary: create_new_room
       tags: []
@@ -58,6 +59,8 @@ paths:
               $ref: '#/components/schemas/roomCreateOrUpdateBody'
             examples: {}
         description: ルームの基本情報
+      security:
+        - ApiKey: []
     parameters: []
     patch:
       summary: ''
@@ -65,6 +68,8 @@ paths:
       responses:
         '200':
           description: OK
+      security:
+        - ApiKey: []
   '/api/rooms/{room_id}':
     parameters:
       - schema:
@@ -90,6 +95,8 @@ paths:
       responses:
         '200':
           description: OK
+      security:
+        - ApiKey: []
     patch:
       summary: ''
       operationId: patch-rooms-room_id
@@ -101,6 +108,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/roomCreateOrUpdateBody'
+      security:
+        - ApiKey: []
   /api/categories:
     get:
       summary: Your GET endpoint
@@ -115,6 +124,7 @@ paths:
                   $ref: '#/components/schemas/category'
       operationId: get-categories
       description: カテゴリの一覧を返す
+      security: []
     parameters: []
   '/api/rooms/{room_id}/users':
     parameters:
@@ -135,20 +145,22 @@ paths:
                 type: array
                 items:
                   $ref: ../models/user.v1.yaml
-      operationId: get-api-rooms-room_id-users
+      operationId: get-room-users
       description: ルームのユーザー一覧を返却する
       parameters: []
       x-internal: false
     post:
       summary: ルームにユーザーを追加する
-      operationId: post-api-rooms-room_id-users
+      operationId: post-rooms-users
       responses:
         '200':
           description: OK
       description: ルームにユーザーを追加する
+      security:
+        - ApiKey: []
     delete:
       summary: ''
-      operationId: delete-api-rooms-room_id-users
+      operationId: delete-rooms-users
       responses:
         '200':
           description: OK
@@ -163,6 +175,23 @@ paths:
           in: query
           name: id
           description: 削除するユーザーID
+      security:
+        - ApiKey: []
+  /api/users/current:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/user.v1.yaml
+      operationId: get-users-current
+      description: 現在のユーザーの情報を返却する
+      security:
+        - ApiKey: []
 components:
   schemas:
     roomCreateOrUpdateBody:
@@ -256,15 +285,7 @@ components:
         - room
         - user
   securitySchemes:
-    localserver_oauth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://myapp.test.com/api/auth/google_oauth2'
-          refreshUrl: ''
-          scopes:
-            read: ''
-            write: ''
-security:
-  - authorizationUrl:
-      - scope_1
+    ApiKey:
+      name: apiKey
+      type: apiKey
+      in: query

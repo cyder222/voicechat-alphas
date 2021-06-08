@@ -137,20 +137,20 @@ paths:
                 type: array
                 items:
                   $ref: ../models/user.v1.yaml
-      operationId: get-api-rooms-room_id-users
+      operationId: get-room-users
       description: ルームのユーザー一覧を返却する
       parameters: []
       x-internal: false
     post:
       summary: ルームにユーザーを追加する
-      operationId: post-api-rooms-room_id-users
+      operationId: post-rooms-users
       responses:
         '200':
           description: OK
       description: ルームにユーザーを追加する
     delete:
       summary: ''
-      operationId: delete-api-rooms-room_id-users
+      operationId: delete-rooms-users
       responses:
         '200':
           description: OK
@@ -176,7 +176,7 @@ paths:
             application/json:
               schema:
                 $ref: ../models/user.v1.yaml
-      operationId: get-api-users-current
+      operationId: get-users-current
       description: 現在のユーザーの情報を返却する
 components:
   schemas:

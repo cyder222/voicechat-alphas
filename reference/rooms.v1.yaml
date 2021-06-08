@@ -169,7 +169,13 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/user.v1.yaml
       operationId: get-api-users-current
       description: 現在のユーザーの情報を返却する
 components:

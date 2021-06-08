@@ -43,6 +43,7 @@ paths:
           name: limit
           description: ページあたりの件数
       description: ルームの一覧を得る
+      security: []
     post:
       summary: create_new_room
       tags: []
@@ -115,6 +116,7 @@ paths:
                   $ref: '#/components/schemas/category'
       operationId: get-categories
       description: カテゴリの一覧を返す
+      security: []
     parameters: []
   '/api/rooms/{room_id}/users':
     parameters:
@@ -163,6 +165,13 @@ paths:
           in: query
           name: id
           description: 削除するユーザーID
+  /api/users/current:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-users-current
+      description: 現在のユーザーの情報を返却する
 components:
   schemas:
     roomCreateOrUpdateBody:

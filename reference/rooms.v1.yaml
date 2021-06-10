@@ -288,7 +288,7 @@ components:
         - user
   securitySchemes:
     ApiKey:
-      name: Authorization
+      name: apiKey
       type: apiKey
       in: header
       description: ''

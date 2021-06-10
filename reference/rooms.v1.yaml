@@ -266,7 +266,7 @@ components:
           type: string
         nickname:
           type: string
-        '':
+        name:
           type: string
       required:
         - id

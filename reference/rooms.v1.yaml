@@ -187,7 +187,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/user.v1.yaml
+                $ref: '#/components/schemas/user'
       operationId: get-users-current
       description: 現在のユーザーの情報を返却する
       security:
@@ -266,8 +266,10 @@ components:
           type: string
         nickname:
           type: string
-        '':
+        name:
           type: string
+      required:
+        - id
     room_user:
       title: room_user
       type: object
@@ -287,6 +289,6 @@ components:
   securitySchemes:
     ApiKey:
       name: Authorization
-      type: Authorization
+      type: apiKey
       in: header
       description: ''

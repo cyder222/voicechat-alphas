@@ -49,8 +49,15 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/room'
+              examples:
+                example-1:
+                  value: string
       operationId: post-rooms
-      description: ルームを作成する
+      description: ルームを作成する、作成成功時に作成したルームの情報を返す
       requestBody:
         content:
           application/json:

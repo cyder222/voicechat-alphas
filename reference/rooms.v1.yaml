@@ -291,7 +291,7 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type: integer
         nickname:
           type: string
         name:

@@ -292,12 +292,16 @@ components:
       properties:
         id:
           type: integer
+        uid:
+          type: string
         nickname:
           type: string
         name:
           type: string
       required:
         - id
+        - uid
+        - name
     room_user:
       title: room_user
       type: object
